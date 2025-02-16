@@ -1,14 +1,14 @@
-import java.util.Scanner;
-
 public class Factorial {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int n = scanner.nextInt();
+        int n = 3;
         long factorial = 1;
+        int i = 2;
         
-        for (int i = 2; i <= n; i++) {
-            factorial *= i;
+        if (n >= 2) {
+            do {
+                factorial *= i;
+                i++;
+            } while (i <= n);
         }
         
         System.out.println("Factorial: " + factorial);
