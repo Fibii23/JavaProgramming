@@ -1,4 +1,4 @@
-# 👋 Hello, I'm Fibii23!  
+# 👋 Hello, I'm Fibii!  
 
 Welcome to my GitHub profile! I'm a passionate cybersecurity enthusiast exploring the digital world one secure step at a time.  
 
