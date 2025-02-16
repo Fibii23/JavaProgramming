@@ -2,9 +2,9 @@ public class Factorial {
     public static void main(String[] args) {
         int n = 3;
         long factorial = 1;
-        int i = 2;
         
         if (n >= 2) {
+            int i = 2; 
             do {
                 factorial *= i;
                 i++;
