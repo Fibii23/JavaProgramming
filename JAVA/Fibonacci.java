@@ -1,14 +1,15 @@
 public class Fibonacci {
     public static void main(String[] args) {
-        int n = 24;
-        int a = 0, b = 1;
+        int n = 10;
+        long firstnum = 0, secondnum = 1;
         
         System.out.print("Fibonacci Series: ");
+        
         for (int i = 0; i < n; i++) {
-            System.out.print(a + " ");
-            int next = a + b;
-            a = b;
-            b = next;
+            System.out.print(firstnum + " ");
+            long next = firstnum + secondnum;
+            firstnum = secondnum;
+            secondnum = next;
         }
     }
 }
