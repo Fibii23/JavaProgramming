@@ -1,5 +1,11 @@
 public class FitnessApp {
 
+    public static void main(String[] args) {
+        double weight = 70; 
+        double height = 1.75; 
+        System.out.println("BMI Category: " + calculateBMI(weight, height));
+    }
+
     public static String calculateBMI(double weight, double height) {
         double bmi = weight / (height * height);
         if (bmi < 18.5) {
@@ -11,11 +17,5 @@ public class FitnessApp {
         } else {
             return "Obese";
         }
-    }
-
-    public static void main(String[] args) {
-        double weight = 70;
-        double height = 1.75;
-        System.out.println("BMI Category: " + calculateBMI(weight, height));
     }
 }
