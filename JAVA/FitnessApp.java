@@ -3,7 +3,7 @@ public class FitnessApp {
     public static void main(String[] args) {
         double weight = 70; 
         double height = 1.75; 
-        System.out.println("BMI Category: " + calculateBMI(weight, height));
+        System.out.println("BMI: " + calculateBMI(weight, height));
     }
 
     public static String calculateBMI(double weight, double height) {
