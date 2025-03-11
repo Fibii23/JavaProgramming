@@ -1,24 +1,44 @@
 import java.util.Scanner;
 
-public class GradeCalculator {
+public class CalculatorApp {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter your name: ");
-        String studentName = scanner.nextLine();
-        System.out.print("Enter score for Subject 1: ");
-        int score1 = scanner.nextInt();
-        System.out.print("Enter score for Subject 2: ");
-        int score2 = scanner.nextInt();
-        System.out.print("Enter score for Subject 3: ");
-        int score3 = scanner.nextInt();
+        System.out.print("Enter first number: ");
+        double num1 = input.nextDouble();
+        System.out.print("Enter second number: ");
+        double num2 = input.nextDouble();
 
-        double averageScore = (score1 + score2 + score3) / 3.0;
+        System.out.println("Addition: " + addition(num1, num2));
+        System.out.println("Subtraction: " + subtraction(num1, num2));
+        System.out.println("Multiplication: " + multiplication(num1, num2));
 
-        if (averageScore >= 75) {
-            System.out.println("Congratulations " + studentName + ", you passed!");
+        if (num2 != 0) {
+            System.out.println("Division: " + division(num1, num2));
+            System.out.println("Modulo: " + modulo(num1, num2));
         } else {
-            System.out.println("Sorry " + studentName + ", you failed.");
+            System.out.println("Division: Undefined (division by zero)");
+            System.out.println("Modulo: Undefined (modulo by zero)");
         }
+    }
+
+    public static double addition(double a, double b) {
+        return a + b;
+    }
+
+    public static double subtraction(double a, double b) {
+        return a - b;
+    }
+
+    public static double multiplication(double a, double b) {
+        return a * b;
+    }
+
+    public static double division(double a, double b) {
+        return a / b;
+    }
+
+    public static double modulo(double a, double b) {
+        return a % b;
     }
 }
