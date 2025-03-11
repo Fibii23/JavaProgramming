@@ -17,8 +17,8 @@ public class CalculatorApp {
             System.out.println("Division: " + division(num1, num2));
             System.out.println("Modulo: " + modulo(num1, num2));
         } else {
-            System.out.println("Division: Undefined (division by zero)");
-            System.out.println("Modulo: Undefined (modulo by zero)");
+            System.out.println("Division: Undefined");
+            System.out.println("Modulo: Undefined");
         }
     }
 
