@@ -17,7 +17,6 @@ public class SimpleCalculator {
         System.out.println("Division: " + division(num1, num2));
         System.out.println("Modulo: " + modulo(num1, num2));
         
-        scanner.close();
     }
 
     public static double addition(double a, double b) {
