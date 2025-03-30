@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Create the main frame
         JFrame frame = new JFrame("Basic Information");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
