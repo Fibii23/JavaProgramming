@@ -55,7 +55,6 @@ public class Main {
         genderPanel.add(rdbFemale);
         genderPanel.add(rdbOthers);
 
-        // Submit Button with action listener
         JButton button = new JButton("SUBMIT");
         button.addActionListener(new ActionListener() {
             @Override
