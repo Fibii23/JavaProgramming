@@ -1,0 +1,119 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
+
+public class BasicInfo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Basic Information");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+
+        JLabel lblID = new JLabel("ID #:");
+        lblID.setBounds(20, 20, 80, 25);
+        JTextField tfID = new JTextField();
+        tfID.setBounds(100, 20, 160, 25);
+
+        JLabel lblFName = new JLabel("First Name:");
+        lblFName.setBounds(20, 50, 80, 25);
+        JTextField tfFName = new JTextField();
+        tfFName.setBounds(100, 50, 160, 25);
+
+        JLabel lblLName = new JLabel("Last Name:");
+        lblLName.setBounds(20, 80, 80, 25);
+        JTextField tfLName = new JTextField();
+        tfLName.setBounds(100, 80, 160, 25);
+
+        JLabel lblBirthdate = new JLabel("Birthdate:");
+        lblBirthdate.setBounds(20, 110, 80, 25);
+        JTextField tfBirthdate = new JTextField("yyyy-mm-dd");
+        tfBirthdate.setBounds(100, 110, 160, 25);
+        tfBirthdate.setForeground(Color.GRAY);
+
+        tfBirthdate.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (tfBirthdate.getText().equals("yyyy-mm-dd")) {
+                    tfBirthdate.setText("");
+                    tfBirthdate.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (tfBirthdate.getText().isEmpty()) {
+                    tfBirthdate.setForeground(Color.GRAY);
+                    tfBirthdate.setText("yyyy-mm-dd");
+                }
+            }
+        });
+
+        JLabel lblGender = new JLabel("Gender:");
+        lblGender.setBounds(20, 140, 80, 25);
+
+        JRadioButton rdbMale = new JRadioButton("Male");
+        rdbMale.setBounds(100, 140, 70, 25);
+        JRadioButton rdbFemale = new JRadioButton("Female");
+        rdbFemale.setBounds(170, 140, 80, 25);
+        JRadioButton rdbOthers = new JRadioButton("Others");
+        rdbOthers.setBounds(250, 140, 80, 25);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(rdbMale);
+        group.add(rdbFemale);
+        group.add(rdbOthers);
+
+        JButton button = new JButton("SUBMIT");
+        button.setBounds(100, 180, 100, 30);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean valid = false;
+                String birthInput = tfBirthdate.getText().trim();
+                int age = 0;
+
+                do {
+                    try {
+                        
+                        if (birthInput.equals("birthdate: yyyy-mm-dd") || birthInput.isEmpty()) {
+                            throw new DateTimeParseException("Empty or placeholder", birthInput, 0);
+                        }
+
+                        LocalDate birthDate = LocalDate.parse(birthInput); 
+                        LocalDate today = LocalDate.now();
+                        Period period = Period.between(birthDate, today);
+                        age = period.getYears();
+                        valid = true;
+                    } catch (DateTimeParseException ex) {
+                        JOptionPane.showMessageDialog(frame,
+                                "Invalid birthdate!\nPlease use the correct format:\n{birthdate: yyyy-MM-dd}\n\nExample: 2000-12-31");
+                        return;
+                    }
+                } while (!valid);
+
+                JOptionPane.showMessageDialog(frame,
+                        "Thank You for Submitting!\nYour age is: " + age + "\n(Birthdate: " + birthInput + ")");
+            }
+        });
+
+        frame.add(lblID);
+        frame.add(tfID);
+        frame.add(lblFName);
+        frame.add(tfFName);
+        frame.add(lblLName);
+        frame.add(tfLName);
+        frame.add(lblBirthdate);
+        frame.add(tfBirthdate);
+        frame.add(lblGender);
+        frame.add(rdbMale);
+        frame.add(rdbFemale);
+        frame.add(rdbOthers);
+        frame.add(button);
+
+        frame.setSize(370, 270);
+        frame.setResizable(false);
+        frame.setVisible(true);
+    }
+}
