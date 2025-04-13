@@ -1,0 +1,59 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+public class BasicInfo3 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("User Information");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+
+        JTextField tfID = new JTextField(10);
+        JTextField tfFName = new JTextField(10);
+        JTextField tfLName = new JTextField(10);
+        JTextField tfBirthdate = new JTextField(10);
+        tfBirthdate.setText("yyyy-mm-dd");
+        tfBirthdate.setForeground(Color.GRAY);
+
+        JRadioButton rdbMale = new JRadioButton("Male");
+        JRadioButton rdbFemale = new JRadioButton("Female");
+        JRadioButton rdbOthers = new JRadioButton("Others");
+        ButtonGroup group = new ButtonGroup();
+        group.add(rdbMale);
+        group.add(rdbFemale);
+        group.add(rdbOthers);
+
+        JButton button = new JButton("Submit");
+        button.addActionListener(e -> {
+            String birthInput = tfBirthdate.getText().trim();
+            try {
+                LocalDate birthDate = LocalDate.parse(birthInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                int age = Period.between(birthDate, LocalDate.now()).getYears();
+                JOptionPane.showMessageDialog(frame, "Thank you! Your age is: " + age);
+            } catch (DateTimeParseException ex) {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid date in yyyy-mm-dd format.");
+            }
+        });
+
+        frame.add(new JLabel("ID #:"));
+        frame.add(tfID);
+        frame.add(new JLabel("First Name:"));
+        frame.add(tfFName);
+        frame.add(new JLabel("Last Name:"));
+        frame.add(tfLName);
+        frame.add(new JLabel("Birthdate:"));
+        frame.add(tfBirthdate);
+        frame.add(new JLabel("Gender:"));
+        frame.add(rdbMale);
+        frame.add(rdbFemale);
+        frame.add(rdbOthers);
+        frame.add(button);
+
+        frame.setSize(300, 250);
+        frame.setVisible(true);
+    }
+}
