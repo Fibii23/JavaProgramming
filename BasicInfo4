@@ -1,0 +1,69 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+public class BasicInfo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Basic Information");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel lblID = new JLabel("ID#:"); 
+        JTextField tfID = new JTextField(20);
+        lblID.setLabelFor(tfID);
+
+        JLabel lblFName = new JLabel("First Name:");
+        JTextField tfFName = new JTextField(20);
+        lblFName.setLabelFor(tfFName);
+
+        JLabel lblLName = new JLabel("Last Name:");
+        JTextField tfLName = new JTextField(20);
+        lblLName.setLabelFor(tfLName);
+
+        JLabel lblBirthdate = new JLabel("Birthdate (yyyy-mm-dd):");
+        JTextField tfBirthdate = new JTextField(20);
+        lblBirthdate.setLabelFor(tfBirthdate);
+
+        JPanel namePanel = new JPanel();
+        namePanel.setLayout(new GridLayout(4, 2));
+        namePanel.add(lblID);
+        namePanel.add(tfID);
+        namePanel.add(lblFName);
+        namePanel.add(tfFName);
+        namePanel.add(lblLName);
+        namePanel.add(tfLName);
+        namePanel.add(lblBirthdate);
+        namePanel.add(tfBirthdate);
+
+        JButton button = new JButton("SUBMIT");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String birthdateInput = tfBirthdate.getText();
+                LocalDate birthdate = LocalDate.parse(birthdateInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                int age = calculateAge(birthdate);
+                JOptionPane.showMessageDialog(frame, "Birthdate: " + birthdate + "\nAge: " + age);
+            }
+        });
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(button);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(namePanel, BorderLayout.NORTH);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        frame.getContentPane().add(mainPanel);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private static int calculateAge(LocalDate birthdate) {
+        LocalDate today = LocalDate.now();
+        return Period.between(birthdate, today).getYears();
+    }
+}
