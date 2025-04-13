@@ -1,0 +1,61 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+public class BasicInfo2 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Basic Information");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(6, 2));
+
+        JTextField tfID = new JTextField();
+        JTextField tfFName = new JTextField();
+        JTextField tfLName = new JTextField();
+        JTextField tfBirthdate = new JTextField("yyyy-mm-dd");
+        tfBirthdate.setForeground(Color.GRAY);
+
+        JRadioButton rdbMale = new JRadioButton("Male");
+        JRadioButton rdbFemale = new JRadioButton("Female");
+        JRadioButton rdbOthers = new JRadioButton("Others");
+        ButtonGroup group = new ButtonGroup();
+        group.add(rdbMale);
+        group.add(rdbFemale);
+        group.add(rdbOthers);
+
+        JButton button = new JButton("SUBMIT");
+        button.addActionListener(e -> {
+            String birthInput = tfBirthdate.getText().trim();
+            try {
+                if (birthInput.equals("yyyy-mm-dd") || birthInput.isEmpty()) {
+                    throw new DateTimeParseException("Invalid input", birthInput, 0);
+                }
+                LocalDate birthDate = LocalDate.parse(birthInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                int age = Period.between(birthDate, LocalDate.now()).getYears();
+                JOptionPane.showMessageDialog(frame, "Thank You for Submitting!\nYour age is: " + age);
+            } catch (DateTimeParseException ex) {
+                JOptionPane.showMessageDialog(frame, "Invalid birthdate format! Use yyyy-mm-dd.");
+            }
+        });
+
+        frame.add(new JLabel("ID #:"));
+        frame.add(tfID);
+        frame.add(new JLabel("First Name:"));
+        frame.add(tfFName);
+        frame.add(new JLabel("Last Name:"));
+        frame.add(tfLName);
+        frame.add(new JLabel("Birthdate:"));
+        frame.add(tfBirthdate);
+        frame.add(new JLabel("Gender:"));
+        frame.add(rdbMale);
+        frame.add(rdbFemale);
+        frame.add(rdbOthers);
+        frame.add(button);
+
+        frame.setSize(400, 300);
+        frame.setVisible(true);
+    }
+}
