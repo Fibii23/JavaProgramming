@@ -1,83 +1,52 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-public class TabbedPaneExample extends JPanel {
-    public TabbedPaneExample() {
-        super(new GridLayout(1, 1));
+public class ThreeTabGUI {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Three Tab GUI");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // Tab 1: Odd/Even Number Identifier
-        JComponent tab1 = createOddEvenTab();
-        tabbedPane.addTab("Tab 1", null, tab1, "Check if a number is odd or even");
-        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-
-        // Tab 2: Placeholder Panel
-        JComponent tab2 = createPlaceholderTab("Panel #2");
-        tabbedPane.addTab("Tab 2", null, tab2, "Second tab");
-        tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-
-        // Tab 3: Placeholder Panel
-        JComponent tab3 = createPlaceholderTab("Panel #3");
-        tabbedPane.addTab("Tab 3", null, tab3, "Third tab");
-        tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-
-        // Add the tabbed pane to this panel
-        add(tabbedPane);
-
-        // Enable scrolling tabs if needed
-        tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-    }
-
-    // Tab 1: Odd/Even Number Identifier
-    private JComponent createOddEvenTab() {
-        JPanel panel = new JPanel(new GridLayout(4, 1, 5, 5));
-
-        JLabel instructionLabel = new JLabel("Enter a number:");
-        JTextField numberInputField = new JTextField();
+        JPanel tab1 = new JPanel();
+        JLabel inputLabel = new JLabel("Enter a number:");
+        JTextField numberField = new JTextField(10);
         JButton checkButton = new JButton("Check");
         JLabel resultLabel = new JLabel("");
 
-        checkButton.addActionListener(e -> {
-            String userInput = numberInputField.getText();
-            try {
-                int number = Integer.parseInt(userInput);
-                if (number % 2 == 0) {
-                    resultLabel.setText("Result: Even");
-                } else {
-                    resultLabel.setText("Result: Odd");
+        checkButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int number = Integer.parseInt(numberField.getText());
+                    if (number % 2 == 0) {
+                        resultLabel.setText(number + " is Even.");
+                    } else {
+                        resultLabel.setText(number + " is Odd.");
+                    }
+                } catch (NumberFormatException ex) {
+                    resultLabel.setText("Invalid input. Please enter an integer.");
                 }
-            } catch (NumberFormatException ex) {
-                resultLabel.setText("Please enter a valid integer.");
             }
         });
 
-        panel.add(instructionLabel);
-        panel.add(numberInputField);
-        panel.add(checkButton);
-        panel.add(resultLabel);
+        tab1.add(inputLabel);
+        tab1.add(numberField);
+        tab1.add(checkButton);
+        tab1.add(resultLabel);
 
-        return panel;
-    }
+        JPanel tab2 = new JPanel();
+        tab2.add(new JLabel("This is Tab 2"));
 
-    // Tabs 2 and 3: Placeholder Panels
-    private JComponent createPlaceholderTab(String text) {
-        JPanel panel = new JPanel(new GridBagLayout());
-        JLabel label = new JLabel(text);
-        panel.add(label);
-        return panel;
-    }
+        JPanel tab3 = new JPanel();
+        tab3.add(new JLabel("You are now in Tab 3"));
 
-    private static void createAndShowGUI() {
-        JFrame frame = new JFrame("TabbedPane Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new TabbedPaneExample(), BorderLayout.CENTER);
-        frame.pack();
+        tabbedPane.addTab("Odd/Even", tab1);
+        tabbedPane.addTab("Tab 2", tab2);
+        tabbedPane.addTab("Tab 3", tab3);
+
+        frame.add(tabbedPane);
+
         frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 }
