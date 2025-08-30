@@ -1,0 +1,16 @@
+PrelimAct6
+Simple Calculator with Validation
+Write a program that
+Accepts two numbers and an operation symbol (+, -, *, /).
+
+Use nested conditions to check if the second number is zero when dividing.
+
+Use a switch case to perform the operation:
+
++: Addition
+
+-: Subtraction
+
+*: Multiplication
+
+/: Division
