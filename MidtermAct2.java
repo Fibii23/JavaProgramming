@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class EvenNumberOperationsWithValidation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         int sum = 0, product = 1;
         int difference = 0;
         double quotient = 1.0;
@@ -11,24 +12,31 @@ public class EvenNumberOperationsWithValidation {
         System.out.println("Please enter 20 numbers:");
 
         for (int i = 0; i < 20; i++) {
-            int number;
-            while (true) {
+            int number = -1; // start with an invalid value
+
+            // Validation loop (keeps asking until number is non-negative)
+            while (number < 0) {
                 System.out.print("Enter number " + (i + 1) + ": ");
                 number = scanner.nextInt();
-                if (number >= 0) break; // Input validation for non-negative numbers
-                System.out.println("Please enter a non-negative number.");
+
+                if (number < 0) {
+                    System.out.println("Please enter a non-negative number.");
+                }
             }
 
+            // Process even numbers less than 100
             if (number < 100 && number % 2 == 0) {
-                sum += number;
-                product *= number;
+                sum = sum + number;
+                product = product * number;
+
                 if (firstEven) {
                     difference = number;
+                    quotient = number;
                     firstEven = false;
                 } else {
-                    difference -= number;
+                    difference = difference - number;
+                    quotient = quotient / number;
                 }
-                quotient /= number;
             }
         }
 
