@@ -17,23 +17,23 @@ public class MidtermAct2 {
             int num = scanner.nextInt();
 
             if (num % 2 == 0 && num < 100) {
-                sum += num; 
-                product *= num; 
+                sum = sum +  num; 
+                product = product * num; 
 
                 if (firstEven) {
                     difference = num;
                     quotient = num;
                     firstEven = false;
                 } else {
-                    difference -= num;
-                    quotient /= num;
+                    difference = difference - num;
+                    quotient = quotient / num;
                 }
             }
         }
 
-        System.out.println("Sum of even numbers < 100: " + sum);
-        System.out.println("Difference of even numbers < 100: " + difference);
-        System.out.println("Product of even numbers < 100: " + product);
-        System.out.println("Quotient of even numbers < 100: " + quotient);
+        System.out.println("Sum of even numbers less than 100: " + sum);
+        System.out.println("Difference of even numbers less than 100: " + difference);
+        System.out.println("Product of even numbers less than 100: " + product);
+        System.out.println("Quotient of even numbers less than 100: " + quotient);
     }
 }
