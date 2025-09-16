@@ -20,6 +20,6 @@ public class PrelimAct2 {
         System.out.printf("Your discount amount is: %.2f%n", discountAmount);
         System.out.printf("Your discounted price is: %.2f%n", discountedPrice);
 
-        input.close();
     }
 }
+
