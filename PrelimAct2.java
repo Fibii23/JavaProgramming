@@ -1,24 +1,25 @@
 import java.util.Scanner;
 
 public class PrelimAct2 {
-   public static void main(String[] args){
-   
-      double discountAmount;
-      double discountedPrice;
-      
-      Scanner inputPriceItem = new Scanner(System.in);
-      System.out.println("Item's Price: ");
-      double priceItem = inputPriceItem.nextDouble();
-      Scanner inputDiscount = new Scanner(System.in);
-      System.out.println("Discount: ");
-      double discount = inputDiscount.nextDouble();
-      
-      discountAmount = (priceItem * discount) / 100;
-      System.out.println("Your discount amount is: "+ discountAmount);
-      discountedPrice = priceItem - discountAmount;
-      System.out.println("Your discount price is: "+ discountedPrice);
+    public static void main(String[] args) {
 
+        double discountAmount;
+        double discountedPrice;
 
-   }
+        Scanner input = new Scanner(System.in);
 
+        System.out.print("Item's Price: ");
+        double priceItem = input.nextDouble();
+
+        System.out.print("Discount (%): ");
+        double discount = input.nextDouble();
+
+        discountAmount = (priceItem * discount) / 100;
+        discountedPrice = priceItem - discountAmount;
+
+        System.out.printf("Your discount amount is: %.2f%n", discountAmount);
+        System.out.printf("Your discounted price is: %.2f%n", discountedPrice);
+
+        input.close();
+    }
 }
