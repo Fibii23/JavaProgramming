@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class MidtermAct4 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);  
+        Scanner input = new Scanner(System.in);
+        String choice = "";  
 
-        String choice = "yes"; 
-
-        while (!choice.isEmpty() && (choice.charAt(0) == 'y' || choice.charAt(0) == 'Y')) {  
-            
+        while (!choice.equalsIgnoreCase("no")) {  
             System.out.print("Enter first number: ");
             double num1 = input.nextDouble();
 
@@ -15,26 +13,23 @@ public class MidtermAct4 {
             double num2 = input.nextDouble();
 
             System.out.print("Enter operation (+, -, *, /): ");
-            char operator = input.next().charAt(0);
+            char operator = inpt.next().charAt(0);
 
-            double result; 
+            double result;
 
             switch (operator) {
                 case '+':
                     result = num1 + num2;
                     System.out.println("Result: " + result);
                     break;
-
                 case '-':
                     result = num1 - num2;
                     System.out.println("Result: " + result);
                     break;
-
                 case '*':
                     result = num1 * num2;
                     System.out.println("Result: " + result);
                     break;
-
                 case '/':
                     if (num2 == 0) {
                         System.out.println("Error: Cannot divide by zero.");
@@ -43,7 +38,6 @@ public class MidtermAct4 {
                         System.out.println("Result: " + result);
                     }
                     break;
-
                 default:
                     System.out.println("Invalid operation.");
             }
